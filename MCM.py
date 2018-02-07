@@ -15,9 +15,12 @@ def makeSSHClient(number):
 def clientConnect(listClient):
     i = 1
     for client in listClient:
+        print("Début de la connexion")
         client.connect('e008m0{}.istic.univ-rennes1.fr'.format(i), username = '14002346', password='Vivelavie2*')
-        client.exec_command('cd Documents/ProjetIrma')
-        client.exec_command('./MLFood.py 10')
+        stdin, stdout, stderr = client.exec_command('cd Documents/ProjetIrma')
+        print(stdin + stdout + stderr)
+        stdinML, stdoutML, stderrML = client.exec_command('./MLFood.py 10')
+        print(stdinML + stdoutML + stderrML)
         i += 1
         client.close()
         pass
