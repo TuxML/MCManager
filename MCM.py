@@ -21,6 +21,10 @@ def clientConnect(listClient):
         stdin, stdout, stderr = client.exec_command('cd Documents/ProjetIrma')
         for ligne in stderr.read():
             print(ligne)
+        stdinP, stdoutP, stderrP = client.exec_command('pwd')
+        for ligne in stdoutP:
+            print(ligne)
+            pass
         stdinML, stdoutML, stderrML = client.exec_command('./MLfood.py 10')
         for ligne in stdoutML.read():
             print(ligne)
