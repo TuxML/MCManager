@@ -19,7 +19,7 @@ def clientConnect(listClient):
         print("{}".format(i))
         client.connect('e008m0{}.istic.univ-rennes1.fr'.format(i), username = '14002346', password='Vivelavie2*')
         stdin, stdout, stderr = client.exec_command('cd Documents/ProjetIrma')
-        for ligne in stdout.read():
+        for ligne in stderr.read():
             print(ligne)
         stdinML, stdoutML, stderrML = client.exec_command('./MLFood.py 10')
         for ligne in stdoutML.read():
