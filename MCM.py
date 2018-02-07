@@ -24,8 +24,7 @@ def clientConnect(listClient):
         stdinML, stdoutML, stderrML = client.exec_command('./MLFood.py 10')
         for ligne in stdoutML.read():
             print(ligne)
-        for ligne in stderrML.read():
-            print(ligne)
+        print(stderrML.read())
         i += 1
         client.close()
         pass
