@@ -17,7 +17,7 @@ def clientConnect(listClient):
     for client in listClient:
         print("Debut de la connexion")
         print("{}".format(i))
-        client.connect('e008m0{}.istic.univ-rennes1.fr'.format(i), username = '14002346', password='Vivelavie2*')
+        client.connect('e212m0{}.istic.univ-rennes1.fr'.format(i), username = '14002346', password='Vivelavie2*')
         stdin, stdout, stderr = client.exec_command('cd ~/Documents/ProjetIrma')
         for ligne in stderr.read():
             print(ligne)
