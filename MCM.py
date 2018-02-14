@@ -1,7 +1,7 @@
 #!/usr/bin/python2
 
 import paramiko
-
+from sys import argv
 
 def makeSSHClient(number):
     listClient = [paramiko.SSHClient() for _ in range(number)]
@@ -27,5 +27,5 @@ def clientConnect(listClient):
 
 
 if __name__ == '__main__':
-    listClient = makeSSHClient(5)
+    listClient = makeSSHClient(argv[1])
     clientConnect(listClient)
