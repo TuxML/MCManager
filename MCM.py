@@ -1,7 +1,9 @@
 #!/usr/bin/python2
 
 import paramiko
+from multiprocessing import Pool
 from sys import argv
+from contextlib import closing
 
 
 def makeSSHClient(number):
@@ -22,23 +24,27 @@ def line_buffered(f):
             line_buf = ''
 
 
-def clientConnect(listClient):
-    i = 1
-    for client in listClient:
-        print("Debut de la connexion")
-        print("{}".format(i))
-        client.connect('e212m0{}.istic.univ-rennes1.fr'.format(i), username = '14002346', password='Vivelavie2*')
-        stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
+def clientConnect(client):
+    i = 2
+    #for client in listClient:
+    print("Debut de la connexion")
+    print("{}".format(i))
+    client.connect('e008m0{}.istic.univ-rennes1.fr'.format(i), username = '14002346', password='Vivelavie2*')
+    stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
 
-        for ligne in line_buffered(stdout):
-            print(ligne)
-            pass
-        i += 1
-        client.close()
+    for ligne in line_buffered(stdout):
+        print(ligne)
         pass
+    i += 1
+    client.close()
     pass
+    #pass
 
 
 if __name__ == '__main__':
     listClient = makeSSHClient(int(argv[1]))
+    with closing(Pool(2)) as worker:
+        worker.map(clientConnect, listClient)
+        worker.terminate()
+        pass
     clientConnect(listClient)
