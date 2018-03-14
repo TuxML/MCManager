@@ -26,31 +26,28 @@ def line_buffered(f):
             line_buf = ''
 
 
-def clientConnect(listClient, idPC):
-    username = raw_input("Username:")
-    password = getpass.getpass("Password:")
-    for client in listClient:
-        print("Debut de la connexion")
-        print("{}".format(idPC))
-        client.connect('e212m0{}.istic.univ-rennes1.fr'.format(idPC), username =  username, password = password)
-        stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
-        client.close()
-        pass
+def clientConnect(client, idPC, username, password):
+    print("Debut de la connexion")
+    print("{}".format(idPC))
+    client.connect('e212m0{}.istic.univ-rennes1.fr'.format(idPC), username =  username, password = password)
+    stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
+    client.close()
     pass
 
 
 if __name__ == '__main__':
-    forks = 2
     idPC = 1
     listClient = makeSSHClient(int(argv[1]))
-    for idFork in range(forks):
+    username = raw_input("Username:")
+    password = getpass.getpass("Password:")
+    for client in listClient:
         try:
             pid = os.fork()
         except OSError:
             sys.stderr.write("Could not create the child process")
             continue
         if pid == 0:
-            clientConnect(listClient, idPC)
+            clientConnect(client, idPC, username, password)
             pass
         else:
             print("In the parent process after forking children number {}".format(idFork))
