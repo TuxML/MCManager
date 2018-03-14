@@ -27,8 +27,8 @@ def line_buffered(f):
 
 
 def clientConnect(listClient, idPC):
-    username = input("Username:")
-    password = raw_input("Password:")
+    username = raw_input("Username:")
+    password = getpass.getpass("Password:")
     for client in listClient:
         print("Debut de la connexion")
         print("{}".format(idPC))
