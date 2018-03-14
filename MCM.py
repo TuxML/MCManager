@@ -48,7 +48,7 @@ if __name__ == '__main__':
     username = raw_input("Username:")
     password = getpass.getpass("Password:")
     for client in listClient:
-        clientName = listOrdi.readLines()
+        clientName = listOrdi.readline()
         try:
             pid = os.fork()
         except OSError:
