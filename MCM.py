@@ -48,6 +48,7 @@ if __name__ == '__main__':
             continue
         if pid == 0:
             clientConnect(client, idPC, username, password)
+            exit()
             pass
         else:
             print("In the parent process after forking children number {}".format(idPC))
