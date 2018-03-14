@@ -55,7 +55,7 @@ if __name__ == '__main__':
         idPC += 1
         pass
     print("End of the forking")
-    for i in range(forks):
+    for endClient in listClient:
         finished = os.waitpid(0, 0)
         print(finished)
         pass
