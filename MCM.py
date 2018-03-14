@@ -35,7 +35,7 @@ def file_len(fname):
 
 def clientConnect(client, clientName, username, password):
     print("Debut de la connexion")
-    print(clientName)
+    print("{}.istic.univ-rennes1.fr".format(clientName))
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
     client.close()
