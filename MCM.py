@@ -48,6 +48,7 @@ if __name__ == '__main__':
     password = getpass.getpass("Password:")
     for client in listClient:
         clientName = listOrdi.readline()
+        print(clientName)
         try:
             pid = os.fork()
         except OSError:
