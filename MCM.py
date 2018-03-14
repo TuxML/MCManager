@@ -26,28 +26,36 @@ def line_buffered(f):
             line_buf = ''
 
 
-def clientConnect(client, idPC, username, password):
+def file_len(fname):
+    with open(fname) as f:
+        for i, l in enumerate(f):
+            pass
+    return i + 1
+
+
+def clientConnect(client, clientName, username, password):
     print("Debut de la connexion")
     print("{}".format(idPC))
-    client.connect('e212m0{}.istic.univ-rennes1.fr'.format(idPC), username =  username, password = password)
+    client.connect('{}.istic.univ-rennes1.fr'.format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
     client.close()
     pass
 
 
 if __name__ == '__main__':
-    idPC = 1
-    listClient = makeSSHClient(int(argv[1]))
+    listOrdi = open('BaseDeData.txt', 'r')
+    listClient = makeSSHClient(file_len("BaseDeData.txt"))
     username = raw_input("Username:")
     password = getpass.getpass("Password:")
     for client in listClient:
+        clientName = listOrdi.readLines()
         try:
             pid = os.fork()
         except OSError:
             sys.stderr.write("Could not create the child process")
             continue
         if pid == 0:
-            clientConnect(client, idPC, username, password)
+            clientConnect(client, clientName, username, password)
             exit()
             pass
         else:
