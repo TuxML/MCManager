@@ -50,7 +50,7 @@ if __name__ == '__main__':
             clientConnect(client, idPC, username, password)
             pass
         else:
-            print("In the parent process after forking children number {}".format(idFork))
+            print("In the parent process after forking children number {}".format(idPC))
         idPC += 1
         pass
     print("End of the forking")
