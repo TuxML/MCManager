@@ -35,7 +35,8 @@ def file_len(fname):
 
 def clientConnect(client, clientName, username, password):
     print("Debut de la connexion")
-    client.connect('{}.istic.univ-rennes1.fr'.format(clientName), username =  username, password = password)
+    print(clientName)
+    client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
     client.close()
     pass
@@ -48,7 +49,6 @@ if __name__ == '__main__':
     password = getpass.getpass("Password:")
     for client in listClient:
         clientName = listOrdi.readline()
-        print(clientName)
         try:
             pid = os.fork()
         except OSError:
