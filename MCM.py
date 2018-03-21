@@ -3,9 +3,8 @@
 import paramiko
 import os
 import getpass
-from multiprocessing import Pool
-from sys import argv
-from contextlib import closing
+
+import sys
 
 
 def makeSSHClient(number):
@@ -34,8 +33,8 @@ def file_len(fname):
 
 
 def clientConnect(client, clientName, username, password):
-    print("Debut de la connexion")
-    print("{}.istic.univ-rennes1.fr".format(clientName))
+    print("Debut de la connexion", end='\r')
+    print("{}.istic.univ-rennes1.fr".format(clientName), end='\r')
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
     client.close()
@@ -45,7 +44,7 @@ def clientConnect(client, clientName, username, password):
 if __name__ == '__main__':
     listOrdi = open('BaseDeData.txt', 'r')
     listClient = makeSSHClient(file_len("BaseDeData.txt"))
-    username = raw_input("Username:")
+    username = input("Username:")
     password = getpass.getpass("Password:")
     for client in listClient:
         clientName = listOrdi.readline()
