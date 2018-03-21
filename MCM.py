@@ -33,7 +33,7 @@ def file_len(fname):
 
 
 def clientConnect(client, clientName, username, password):
-    Log_host = open('{}.log'.format(username), 'w')
+    Log_host = open('{}.log'.format(clientName), 'w')
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1 --dev')
     for line in stdout:
@@ -62,5 +62,4 @@ if __name__ == '__main__':
         pass
     for endClient in listClient:
         finished = os.waitpid(0, 0)
-        print(finished)
         pass
