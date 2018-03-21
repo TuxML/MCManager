@@ -1,4 +1,4 @@
-#!/usr/bin/python2
+#!/usr/bin/python2.7
 
 import paramiko
 import os
@@ -33,8 +33,8 @@ def file_len(fname):
 
 
 def clientConnect(client, clientName, username, password):
-    print("Debut de la connexion", end='\r')
-    print("{}.istic.univ-rennes1.fr".format(clientName), end='\r')
+    print("Debut de la connexion \r")
+    print("{}.istic.univ-rennes1.fr\r".format(clientName))
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
     client.close()
@@ -44,7 +44,7 @@ def clientConnect(client, clientName, username, password):
 if __name__ == '__main__':
     listOrdi = open('BaseDeData.txt', 'r')
     listClient = makeSSHClient(file_len("BaseDeData.txt"))
-    username = input("Username:")
+    username = raw_input("Username:")
     password = getpass.getpass("Password:")
     for client in listClient:
         clientName = listOrdi.readline()
