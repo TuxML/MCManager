@@ -33,10 +33,10 @@ def file_len(fname):
 
 
 def clientConnect(client, clientName, username, password):
-    print("Debut de la connexion \r")
-    print("{}.istic.univ-rennes1.fr\r".format(clientName))
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1')
+    for line in stdout:
+        print(line + '\r')
     client.close()
     pass
 
@@ -44,7 +44,7 @@ def clientConnect(client, clientName, username, password):
 if __name__ == '__main__':
     listOrdi = open('BaseDeData.txt', 'r')
     listClient = makeSSHClient(file_len("BaseDeData.txt"))
-    username = raw_input("Username:")
+    username = input("Username:")
     password = getpass.getpass("Password:")
     for client in listClient:
         clientName = listOrdi.readline()
@@ -58,10 +58,7 @@ if __name__ == '__main__':
             clientConnect(client, clientName, username, password)
             exit()
             pass
-        else:
-            print("In the parent process after forking children number")
         pass
-    print("End of the forking")
     for endClient in listClient:
         finished = os.waitpid(0, 0)
         print(finished)
