@@ -38,6 +38,7 @@ def clientConnect(client, clientName, username, password):
     print("Debut ssh")
     print(clientName)
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
+    print("connexion reussi, debut MLFood")
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1 --dev')
     for line in stdout:
         Log_host.write(line)
