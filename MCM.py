@@ -42,8 +42,8 @@ def clientConnect(client, clientName, username, password):
     #stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1 --dev')
     stdin, stdout, stderr = client.exec_command('ls')
     print("fin de la commande")
-    for line in stdout:
-        Log_host.write(line)
+    #for line in stdout:
+    #    Log_host.write(line)
     client.close()
     print("End ssh")
     pass
