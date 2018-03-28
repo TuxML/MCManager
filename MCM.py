@@ -44,7 +44,7 @@ def clientConnect(client, clientName, username, password):
 
 if __name__ == '__main__':
     listOrdi = open('BaseDeDataTest.txt', 'r')
-    listClient = makeSSHClient(file_len("BaseDeData.txt"))
+    listClient = makeSSHClient(10)
     username = raw_input("Username:")
     password = getpass.getpass("Password:")
     for client in listClient:
