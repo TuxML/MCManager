@@ -34,11 +34,13 @@ def file_len(fname):
 
 def clientConnect(client, clientName, username, password):
     Log_host = open('{}.log'.format(clientName), 'w')
+    print("Debut ssh")
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1 --dev')
     for line in stdout:
         Log_host.write(line)
     client.close()
+    print("End ssh")
     pass
 
 
@@ -48,6 +50,7 @@ if __name__ == '__main__':
     for line in listOrdi:
         number_ordi += 1
     listOrdi.seek(0)
+    print(number_ordi)
     listClient = makeSSHClient(number_ordi)
     username = raw_input("Username:")
     password = getpass.getpass("Password:")
