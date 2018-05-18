@@ -12,7 +12,6 @@ def makeSSHClient(number):
     print(listClient)
     for client in listClient:
         client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-        pass
     return listClient
 
 
@@ -34,8 +33,7 @@ def file_len(fname):
 
 def clientConnect(client, clientName, username, password):
     Log_host = open('{}.log'.format(clientName), 'w')
-    print("Debut ssh")
-    print(clientName)
+    print("Starting SSH connection with", clientName)
     client.connect("{}.istic.univ-rennes1.fr".format(clientName), username =  username, password = password)
     print("connexion reussi, debut MLFood")
     #stdin, stdout, stderr = client.exec_command('cd /private/student/6/46/14002346/Documents/ProjetIrma; ./MLfood.py 1 --dev')
@@ -45,7 +43,6 @@ def clientConnect(client, clientName, username, password):
     #    Log_host.write(line)
     client.close()
     print("End ssh")
-    pass
 
 
 if __name__ == '__main__':
@@ -68,9 +65,7 @@ if __name__ == '__main__':
             continue
         if pid == 0:
             clientConnect(client, clientName, username, password)
-            exit()
-            pass
-        pass
+            exit(0)
+
     for endClient in listClient:
         finished = os.waitpid(0, 0)
-        pass
