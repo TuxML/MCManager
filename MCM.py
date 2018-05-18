@@ -42,6 +42,7 @@ def clientConnect(client, clientName, username, password):
     #for line in stdout:
     #    Log_host.write(line)
     client.close()
+    Log_host.close()
     print("End ssh")
 
 
@@ -69,3 +70,5 @@ if __name__ == '__main__':
 
     for endClient in listClient:
         finished = os.waitpid(0, 0)
+
+    listOrdi.close()
